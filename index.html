@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYBizLab | 福州一中鸣阳商业模拟社</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            padding: 40px 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 顶部装饰线条 - 保持设计语言但不突兀 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, #3498db, transparent 90%);
+            opacity: 0.5;
+        }
+
+        .logo-container {
+            margin-bottom: 28px;
+        }
+
+        .logo {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #ecf0f1;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.03);
+        }
+
+        .main-title {
+            font-size: 2.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        .acronym {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3498db;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .english-title {
+            font-size: 1.05rem;
+            color: #5d6d7e;
+            font-weight: 400;
+            margin-bottom: 32px;
+            line-height: 1.5;
+            font-style: normal;
+        }
+
+        .slogan {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            font-weight: 500;
+            margin: 40px 0;
+            padding: 18px 20px;
+            background: linear-gradient(90deg, rgba(52, 152, 219, 0.03), rgba(52, 152, 219, 0.01));
+            border-radius: 8px;
+            border-left: 2px solid rgba(52, 152, 219, 0.15);
+        }
+
+        .construction {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin: 40px 0 50px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dots {
+            display: inline-block;
+            position: relative;
+            width: 60px;
+            height: 30px;
+            margin-left: 4px;
+        }
+
+        .dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #3498db;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dot:nth-child(1) {
+            left: 0;
+            animation: bounce 1.4s infinite;
+            animation-delay: -0.32s;
+        }
+
+        .dot:nth-child(2) {
+            left: 20px;
+            animation: bounce 1.4s infinite;
+            animation-delay: -0.16s;
+        }
+
+        .dot:nth-child(3) {
+            left: 40px;
+            animation: bounce 1.4s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+            40% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        .contact {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .contact a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .contact a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 640px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .main-title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .construction {
+                font-size: 1.5rem;
+            }
+            
+            .logo {
+                width: 76px;
+                height: 76px;
+            }
+        }
+
+        /* 打印样式 */
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .dots {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="https://pic1.imgdb.cn/item/6966383f363e238a1ffccec3.jpg" alt="MYBizLab 社徽" class="logo">
+        </div>
+        
+        <h1 class="main-title">福州一中鸣阳商业模拟社</h1>
+        <div class="subtitle">Mingyang Business Simulation Society of FZYZ</div>
+        <div class="acronym">MYBizLab FZYZ</div>
+        
+        <div class="english-title">
+            A national youth business education platform originating from Fuzhou No.1 High School
+        </div>
+        
+        <div class="slogan">经济匡世，富国兴邦。</div>
+        
+        <div class="construction">
+            网站建设中
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        
+        <div class="contact">
+            联系我们：<a href="mailto:contact@mybizlab.top">contact@mybizlab.top</a>
+        </div>
+    </div>
+
+    <script>
+        // 简单的加载完成提示
+        window.addEventListener('load', function() {
+            console.log('MYBizLab 官网加载完成 | Design by MYBizLab Secretariat');
+        });
+    </script>
+</body>
+</html>
