@@ -3,290 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MYBizLab | 鸣阳商业模拟社</title>
+    <title>MYBizLab | 福州一中鸣阳商业模拟社</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a365d;
-            --secondary: #2d3748;
-            --accent: #3498db;
-            --light: #718096;
-            --lighter: #e2e8f0;
-            --background: #fafafa;
+            --primary-dark: #1a1f2c;
+            --primary-medium: #2d3748;
+            --primary-light: #4a5568;
+            --accent-blue: #2d5aff;
+            --accent-blue-subtle: #4a6cf7;
+            --neutral-light: #f9fafb;
+            --neutral-medium: #e5e7eb;
+            --neutral-dark: #6b7280;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 
-                         'Segoe UI', system-ui, sans-serif;
-            background-color: var(--background);
-            color: var(--primary);
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-            min-height: 100vh;
+            font-family: 'Noto Serif SC', serif;
+            background-color: var(--neutral-light);
+            color: var(--primary-dark);
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
         }
-        
+
         .container {
-            max-width: 680px;
+            max-width: 420px; /* 减少宽度 */
             width: 100%;
+            padding: 36px 24px 28px; /* 顶部更多，底部较少 */
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
             text-align: center;
-            padding: clamp(30px, 5vw, 50px);
             position: relative;
+            border: 1px solid var(--neutral-medium);
         }
-        
-        /* 社徽容器 */
-        .logo-wrapper {
-            margin-bottom: clamp(24px, 4vw, 36px);
-            display: inline-block;
-        }
-        
-        .logo {
-            width: clamp(64px, 12vw, 88px);
-            height: clamp(64px, 12vw, 88px);
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid var(--lighter);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover {
-            transform: scale(1.03);
-        }
-        
-        /* 主标题系统 */
-        .title-group {
-            margin-bottom: clamp(28px, 5vw, 36px);
-        }
-        
-        .chinese-title {
-            font-size: clamp(1.75rem, 4vw, 2.25rem);
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 4px;
-            letter-spacing: -0.02em;
-        }
-        
-        .english-title {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            font-weight: 400;
-            color: var(--secondary);
-            line-height: 1.4;
-            max-width: 90%;
-            margin: 0 auto;
-        }
-        
-        /* 缩写标牌 */
-        .acronym {
-            display: inline-block;
-            font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-            font-weight: 500;
-            color: var(--accent);
-            letter-spacing: 1px;
-            padding: 6px 16px;
-            border: 1px solid rgba(52, 152, 219, 0.15);
-            border-radius: 20px;
-            background: rgba(52, 152, 219, 0.03);
-            margin-bottom: clamp(32px, 6vw, 44px);
-        }
-        
-        /* 口号区域 */
-        .slogan {
-            font-size: clamp(1.1rem, 2.2vw, 1.35rem);
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: clamp(40px, 8vw, 56px);
-            position: relative;
-            display: inline-block;
-            padding: 0 8px;
-        }
-        
-        .slogan::before,
-        .slogan::after {
-            content: "—";
-            color: var(--light);
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.3;
-        }
-        
-        .slogan::before { left: -24px; }
-        .slogan::after { right: -24px; }
-        
-        /* 建设状态 - 核心区 */
-        .construction-container {
-            margin-bottom: clamp(40px, 8vw, 56px);
-            min-height: 48px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-        
-        .construction-text {
-            font-size: clamp(1.5rem, 3vw, 1.8rem);
-            font-weight: 500;
-            color: var(--secondary);
-            line-height: 1;
-            position: relative;
-            display: inline-flex;
-            align-items: flex-end;
-        }
-        
-        /* 精确对齐的跳动点 */
-        .dots-wrapper {
-            display: inline-block;
-            position: relative;
-            width: 42px;
-            height: 20px;
-            margin-left: 4px;
-            vertical-align: baseline;
-            bottom: -2px;
-        }
-        
-        .dot {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            bottom: 0;
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .dot:nth-child(1) {
-            left: 8px;
-            animation: bounce-dot 1.2s infinite;
-            animation-delay: -0.24s;
-        }
-        
-        .dot:nth-child(2) {
-            left: 19px;
-            animation: bounce-dot 1.2s infinite;
-            animation-delay: -0.12s;
-        }
-        
-        .dot:nth-child(3) {
-            left: 30px;
-            animation: bounce-dot 1.2s infinite;
-        }
-        
-        @keyframes bounce-dot {
-            0%, 80%, 100% {
-                transform: translateY(0);
-                opacity: 0.4;
-            }
-            40% {
-                transform: translateY(-8px);
-                opacity: 1;
-            }
-        }
-        
-        /* 联系方式 */
-        .contact {
-            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
-            color: var(--light);
-            padding-top: clamp(24px, 5vw, 32px);
-            border-top: 1px solid var(--lighter);
-            max-width: 300px;
-            margin: 0 auto;
-        }
-        
-        .contact a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-            display: inline-block;
-            margin-top: 2px;
-        }
-        
-        .contact a:hover {
-            color: #2980b9;
-        }
-        
-        /* 极细装饰线 */
+
+        /* 顶部细线装饰 */
         .container::before {
             content: '';
             position: absolute;
             top: 0;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+            border-radius: 0 0 1px 1px;
+        }
+
+        .logo-container {
+            margin-bottom: 10px; /* 进一步减小，使社徽离社名更近 */
+        }
+
+        .logo {
+            width: 78px;
+            height: 78px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 1.5px solid var(--neutral-medium);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(45, 95, 255, 0.12);
+        }
+
+        .chinese-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.75rem; /* 稍小一点，配合较窄容器 */
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+        }
+
+        .english-full {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem; /* 稍小 */
+            font-weight: 500;
+            color: var(--primary-medium);
+            margin-bottom: 6px;
+            letter-spacing: 0.4px;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .acronym {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem; /* 稍小 */
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 6px;
+            letter-spacing: 0.8px;
+        }
+
+        .description {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem; /* 稍小 */
+            color: var(--primary-light);
+            line-height: 1.5;
+            margin-bottom: 18px; /* 稍小 */
+            max-width: 320px; /* 配合较窄容器 */
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .slogan-container {
+            margin: 20px 0; /* 稍小 */
+            padding: 18px 16px; /* 稍小 */
+            background: linear-gradient(135deg, rgba(45, 95, 255, 0.03), rgba(45, 95, 255, 0.01));
+            border-radius: 6px;
+            border: 1px solid rgba(45, 95, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 背景ECONOMICS文字 */
+        .slogan-background {
+            position: absolute;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            opacity: 0.15;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem; /* 稍小 */
+            font-weight: 900;
+            color: rgba(45, 95, 255, 0.03);
+            white-space: nowrap;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            z-index: 0;
+            pointer-events: none;
+            width: 120%;
         }
-        
-        /* 响应式微调 */
+
+        .slogan {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.25rem; /* 稍小 */
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+
+        .construction-container {
+            margin: 24px 0 26px; /* 稍小 */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .construction-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.25rem; /* 稍小 */
+            font-weight: 600;
+            color: var(--primary-medium);
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .dots-container {
+            display: inline-flex;
+            align-items: flex-end;
+            height: 1.25rem;
+            margin-left: 4px;
+            position: relative;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 1.6s infinite ease-in-out;
+        }
+
+        .dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+
+        .contact {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.83rem;
+            color: var(--neutral-dark);
+            padding-top: 20px;
+            border-top: 1px solid var(--neutral-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px; /* 减小间距，更像一行字 */
+            line-height: 1.4;
+        }
+
+        .contact-text {
+            font-weight: 500;
+        }
+
+        .contact-email {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--accent-blue-subtle);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            letter-spacing: 0.2px;
+            position: relative;
+        }
+
+        /* 悬停小动画：轻微上移和颜色加深 */
+        .contact-email:hover {
+            color: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        /* 响应式调整 */
         @media (max-width: 480px) {
-            .slogan::before,
-            .slogan::after {
-                display: none;
+            .container {
+                padding: 32px 20px 24px;
+                max-width: 90vw;
             }
             
-            .dots-wrapper {
-                width: 38px;
-                height: 18px;
+            .chinese-title {
+                font-size: 1.5rem;
             }
             
-            .dot {
-                width: 3.5px;
-                height: 3.5px;
+            .english-full {
+                font-size: 0.78rem;
             }
             
-            .dot:nth-child(1) { left: 7px; }
-            .dot:nth-child(2) { left: 17px; }
-            .dot:nth-child(3) { left: 27px; }
+            .acronym {
+                font-size: 1rem;
+            }
+            
+            .slogan {
+                font-size: 1.15rem;
+            }
+            
+            .slogan-background {
+                font-size: 2.2rem;
+                letter-spacing: 2.5px;
+            }
+            
+            .construction-text {
+                font-size: 1.15rem;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .description {
+                font-size: 0.78rem;
+                max-width: 90%;
+            }
+            
+            .contact {
+                font-size: 0.8rem;
+            }
         }
-        
+
+        @media (max-height: 680px) {
+            .container {
+                padding: 30px 22px 22px;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .chinese-title {
+                font-size: 1.5rem;
+            }
+            
+            .slogan-container {
+                margin: 16px 0;
+                padding: 16px 14px;
+            }
+            
+            .construction-container {
+                margin: 20px 0 22px;
+            }
+            
+            .contact {
+                padding-top: 18px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .slogan-background {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .contact {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
         /* 打印优化 */
         @media print {
             body {
                 background: white;
-                padding: 10px;
             }
             
-            .logo {
-                filter: grayscale(100%);
-                border-color: #ccc;
+            .container {
+                box-shadow: none;
+                border: 1px solid #ddd;
             }
             
-            .dots-wrapper {
+            .dots-container,
+            .slogan-background {
                 display: none;
+            }
+        }
+
+        /* 加载动画 */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo-wrapper">
-            <img src="https://pic1.imgdb.cn/item/6966383f363e238a1ffccec3.jpg" alt="MYBizLab Logo" class="logo">
+    <div class="container" style="animation: fadeUp 0.5s ease-out;">
+        <div class="logo-container">
+            <img src="https://pic1.imgdb.cn/item/6966383f363e238a1ffccec3.jpg" alt="MYBizLab 社徽" class="logo">
         </div>
         
-        <div class="title-group">
-            <h1 class="chinese-title">福州一中鸣阳商业模拟社</h1>
-            <div class="english-title">Mingyang Business Simulation Society of FZYZ</div>
-        </div>
-        
+        <h1 class="chinese-title">福州一中鸣阳商业模拟社</h1>
+        <div class="english-full">Mingyang Business Simulation Society of FZYZ</div>
         <div class="acronym">MYBizLab FZYZ</div>
         
-        <div class="slogan">经济匡世，富国兴邦</div>
+        <div class="description">
+            A national youth business education platform originating from Fuzhou No.1 High School
+        </div>
+        
+        <div class="slogan-container">
+            <div class="slogan-background">ECONOMICS</div>
+            <div class="slogan">经济匡世，富国兴邦。</div>
+        </div>
         
         <div class="construction-container">
             <div class="construction-text">
                 网站建设中
-                <div class="dots-wrapper">
+                <div class="dots-container">
                     <span class="dot"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
@@ -295,9 +400,16 @@
         </div>
         
         <div class="contact">
-            联系我们<br>
-            <a href="mailto:contact@mybizlab.top">contact@mybizlab.top</a>
+            <span class="contact-text">联系我们：</span>
+            <a href="mailto:contact@mybizlab.top" class="contact-email">contact@mybizlab.top</a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('%cMYBizLab FZYZ', 'color: #4a6cf7; font-family: "Playfair Display", serif; font-weight: bold; font-size: 14px;');
+            console.log('%c福州一中鸣阳商业模拟社', 'color: #2d3748; font-family: "Noto Serif SC", serif; font-weight: bold;');
+        });
+    </script>
 </body>
 </html>
